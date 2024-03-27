@@ -22,7 +22,7 @@ public class NewBeeSystemSdkManager  {
     public NewBeeSystemSdkInterFace getSdkInterFace(){
         return sdkInterFace;
     }
-    
+
 
     private NewBeeSystemSdkInterFace sdkInterFace=new NewBeeSystemSdkInterFace() {
         @Override
@@ -44,6 +44,11 @@ public class NewBeeSystemSdkManager  {
         public void setUiResolution(Context context, int w, int h) {
             String DISPLAY_SIZE_FORCED = "display_size_forced";
             Settings.Global.putString(context.getContentResolver(), DISPLAY_SIZE_FORCED, w + "," + h);
+        }
+
+        @Override
+        public void setShowDensity(int density) {
+            CmdUtil.execCommand("wm density "+density);
         }
 
         @Override

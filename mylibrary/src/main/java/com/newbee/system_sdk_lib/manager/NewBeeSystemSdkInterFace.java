@@ -12,6 +12,8 @@ public interface NewBeeSystemSdkInterFace {
 
     public void setUiResolution(Context context,int w, int h);
 
+    public void setShowDensity(int density);
+
     public void setFontSize(Context context,float size);
 
     public boolean systemVolumeUp();
