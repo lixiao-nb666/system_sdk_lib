@@ -14,9 +14,11 @@ public class NewBeeSystemSdkManager  {
 
     private SystemKeyCodeInput systemKeyCodeInput=new SystemKeyCodeInput();
     private NewBeeAudioUtil newBeeAudioUtil;
+    private Context context;
 
     public NewBeeSystemSdkManager(Context context){
         newBeeAudioUtil=new NewBeeAudioUtil(context);
+        this.context=context;
     }
 
     public NewBeeSystemSdkInterFace getSdkInterFace(){
@@ -41,7 +43,7 @@ public class NewBeeSystemSdkManager  {
         }
 
         @Override
-        public void setUiResolution(Context context, int w, int h) {
+        public void setUiResolution(int w, int h) {
             String DISPLAY_SIZE_FORCED = "display_size_forced";
             Settings.Global.putString(context.getContentResolver(), DISPLAY_SIZE_FORCED, w + "," + h);
         }
@@ -52,7 +54,7 @@ public class NewBeeSystemSdkManager  {
         }
 
         @Override
-        public void setFontSize(Context context,float size) {
+        public void setFontSize(float size) {
             Settings.System.putFloat(context.getContentResolver(), Settings.System.FONT_SCALE, 1.0f);//设置字体大小
         }
 
