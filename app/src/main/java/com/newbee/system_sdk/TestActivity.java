@@ -19,7 +19,7 @@ public class TestActivity extends BaseCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            newBeeSystemSdkManager.reboot();
+            newBeeSystemSdkManager.getSdkInterFace().reboot();
         }
     };
     NewBeeSystemSdkManager newBeeSystemSdkManager;
@@ -32,7 +32,7 @@ public class TestActivity extends BaseCompatActivity {
     @Override
     public void initView() {
         newBeeSystemSdkManager=new NewBeeSystemSdkManager(this);
-        newBeeSystemSdkManager.setUiResolution(this,1920,1080);
+        newBeeSystemSdkManager.getSdkInterFace().setUiResolution(this,1920,1080);
 //        new Thread(new Runnable() {
 //            @Override
 //            public void run() {
