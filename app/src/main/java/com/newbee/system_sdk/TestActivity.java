@@ -1,5 +1,6 @@
 package com.newbee.system_sdk;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,8 +32,13 @@ public class TestActivity extends BaseCompatActivity {
 
     @Override
     public void initView() {
-        newBeeSystemSdkManager=new NewBeeSystemSdkManager(this);
-//        newBeeSystemSdkManager.getSdkInterFace().setUiResolution(this,1920,1080);
+        newBeeSystemSdkManager= new NewBeeSystemSdkManager() {
+            @Override
+            public Context getContext() {
+                return context;
+            }
+        };
+        newBeeSystemSdkManager.getSdkInterFace().setUiResolution(1920,1080);
 //        new Thread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -47,7 +53,7 @@ public class TestActivity extends BaseCompatActivity {
 //        String str3=CmdUtil.execCommand("wm size 1708x960");
 //        String str4=CmdUtil.execCommand("wm density 240");
         Log.i("kankanzhi","kankandaodishiduoshao:2-"+str2);
-//        handler.sendEmptyMessageDelayed(1,3000);
+        handler.sendEmptyMessageDelayed(1,3000);
 //        newBeeSystemSdkManager.reboot();
     }
 

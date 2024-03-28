@@ -9,20 +9,33 @@ import com.newbee.system_key_lib.system_key_input.SystemKeyCodeInput;
 import com.newbee.system_key_lib.systemkey.SystemKeyEventListen;
 import com.newbee.system_sdk_lib.util.CmdUtil;
 
-public class NewBeeSystemSdkManager  {
+public abstract class NewBeeSystemSdkManager  {
+
+    public abstract Context getContext();
 
 
     private SystemKeyCodeInput systemKeyCodeInput=new SystemKeyCodeInput();
-    private NewBeeAudioUtil newBeeAudioUtil;
-    private Context context;
 
-    public NewBeeSystemSdkManager(Context context){
-        newBeeAudioUtil=new NewBeeAudioUtil(context);
-        this.context=context;
+
+
+    public NewBeeSystemSdkManager(){
+
     }
 
     public NewBeeSystemSdkInterFace getSdkInterFace(){
         return sdkInterFace;
+    }
+
+    private NewBeeAudioUtil newBeeAudioUtil;
+    private NewBeeAudioUtil getNewBeeAudioUtil(){
+        if(null==newBeeAudioUtil){
+            synchronized (NewBeeSystemSdkManager.class){
+                if(null==newBeeAudioUtil){
+                    newBeeAudioUtil=new NewBeeAudioUtil(getContext());
+                }
+            }
+        }
+        return newBeeAudioUtil;
     }
 
 
@@ -45,7 +58,7 @@ public class NewBeeSystemSdkManager  {
         @Override
         public void setUiResolution(int w, int h) {
             String DISPLAY_SIZE_FORCED = "display_size_forced";
-            Settings.Global.putString(context.getContentResolver(), DISPLAY_SIZE_FORCED, w + "," + h);
+            Settings.Global.putString(getContext().getContentResolver(), DISPLAY_SIZE_FORCED, w + "," + h);
         }
 
         @Override
@@ -55,7 +68,7 @@ public class NewBeeSystemSdkManager  {
 
         @Override
         public void setFontSize(float size) {
-            Settings.System.putFloat(context.getContentResolver(), Settings.System.FONT_SCALE, 1.0f);//设置字体大小
+            Settings.System.putFloat(getContext().getContentResolver(), Settings.System.FONT_SCALE, 1.0f);//设置字体大小
         }
 
         @Override
