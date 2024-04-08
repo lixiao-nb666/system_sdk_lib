@@ -25,7 +25,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.lixiao-nb666:audio_lib:1.0.2'
+    implementation 'com.github.lixiao-nb666:audio_luminance_lib:1.0.7'
     implementation 'com.github.lixiao-nb666:system_key_lib:1.0.5'
-
 }

@@ -3,10 +3,9 @@ package com.newbee.system_sdk_lib.manager;
 import android.content.Context;
 import android.provider.Settings;
 import android.view.KeyEvent;
-
-import com.newbee.audio_manager_lib.NewBeeAudioUtil;
+import com.newbee.audio_luminance_lib.audio.NewBeeAudioUtil;
+import com.newbee.audio_luminance_lib.luminance.NewBeeSystemLuminanceUtil;
 import com.newbee.system_key_lib.system_key_input.SystemKeyCodeInput;
-import com.newbee.system_key_lib.systemkey.SystemKeyEventListen;
 import com.newbee.system_sdk_lib.util.CmdUtil;
 
 public abstract class NewBeeSystemSdkManager  {
@@ -37,6 +36,8 @@ public abstract class NewBeeSystemSdkManager  {
         }
         return newBeeAudioUtil;
     }
+
+
 
 
     private NewBeeSystemSdkInterFace sdkInterFace=new NewBeeSystemSdkInterFace() {
@@ -85,63 +86,89 @@ public abstract class NewBeeSystemSdkManager  {
 
         @Override
         public boolean volumeUp(boolean showUi) {
-            if(null!=newBeeAudioUtil){
-                return newBeeAudioUtil.valueUp(showUi);
+            if(null!=getNewBeeAudioUtil()){
+                return getNewBeeAudioUtil().valueUp(showUi);
             }
             return false;
         }
 
         @Override
         public boolean volumeDown(boolean showUi) {
-            if(null!=newBeeAudioUtil){
-                return newBeeAudioUtil.valueDown(showUi);
+            if(null!=getNewBeeAudioUtil()){
+                return getNewBeeAudioUtil().valueDown(showUi);
             }
             return false;
         }
 
         @Override
         public boolean volumeLoop(boolean showUi) {
-            if(null!=newBeeAudioUtil){
-                return newBeeAudioUtil.valueLoop(showUi);
+            if(null!=getNewBeeAudioUtil()){
+                return getNewBeeAudioUtil().valueLoop(showUi);
             }
             return false;
         }
 
         @Override
         public int getVolumeNowNumb() {
-            if(null!=newBeeAudioUtil){
-                return newBeeAudioUtil.getVolume();
+            if(null!=getNewBeeAudioUtil()){
+                return getNewBeeAudioUtil().getVolume();
             }
             return -1;
         }
 
         @Override
         public int getVolumeMaxNumb() {
-            if(null!=newBeeAudioUtil){
-                return newBeeAudioUtil.getMaxVolume();
+            if(null!=getNewBeeAudioUtil()){
+                return getNewBeeAudioUtil().getMaxVolume();
             }
             return -1;
         }
 
         @Override
         public boolean setVolume(int v, boolean showUi) {
-            if(null!=newBeeAudioUtil){
-                return newBeeAudioUtil.setVolume(v,showUi);
+            if(null!=getNewBeeAudioUtil()){
+                return getNewBeeAudioUtil().setVolume(v,showUi);
             }
             return false;
         }
 
         @Override
         public boolean setVolumeByPercentage(int v, boolean showUi) {
-            if(null!=newBeeAudioUtil){
-                return newBeeAudioUtil.setVolumeByPercentage(v,showUi);
+            if(null!=getNewBeeAudioUtil()){
+                return getNewBeeAudioUtil().setVolumeByPercentage(v,showUi);
             }
             return false;
         }
 
+        @Override
+        public boolean luminanceUp() {
+            return NewBeeSystemLuminanceUtil.getInstance().valueUp(getContext());
+        }
+
+        @Override
+        public boolean luminanceDown() {
+            return NewBeeSystemLuminanceUtil.getInstance().valueDown(getContext());
+        }
+
+        @Override
+        public boolean luminanceLoop() {
+            return NewBeeSystemLuminanceUtil.getInstance().valueLoop(getContext());
+        }
+
+        @Override
+        public int getLuminanceNowNumb() {
+            return NewBeeSystemLuminanceUtil.getInstance().getValue(getContext());
+        }
+
+        @Override
+        public int getLuminanceMaxNumb() {
+            return NewBeeSystemLuminanceUtil.getInstance().getMaxLevel();
+        }
+
+        @Override
+        public void setLuminance(int v) {
+            NewBeeSystemLuminanceUtil.getInstance().setValue(v,getContext());
+        }
     };
-
-
-
 
 }

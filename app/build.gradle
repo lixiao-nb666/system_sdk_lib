@@ -56,5 +56,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.github.lixiao-nb666:build_lib:1.0.9'
     implementation project(path: ':mylibrary')
-
+    implementation 'com.github.lixiao-nb666:audio_luminance_lib:1.0.7'
+    implementation 'com.github.lixiao-nb666:system_key_lib:1.0.5'
 }

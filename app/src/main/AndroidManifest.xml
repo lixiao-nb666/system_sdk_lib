@@ -56,7 +56,13 @@
 
         </activity>
 
-
+        <service
+            android:name="com.newbee.audio_luminance_lib.service.LuminanceNumbShowFloatWindowService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="brightness"
+            tools:ignore="WrongManifestParent">
+        </service>
 
     </application>
 

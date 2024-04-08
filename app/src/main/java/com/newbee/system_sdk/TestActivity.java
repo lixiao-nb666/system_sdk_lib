@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.newbee.audio_luminance_lib.service.LuminanceNumbShowFloatWindowServiceManager;
+import com.newbee.audio_luminance_lib.service.float_window.LuminanceNumbShowValue;
 import com.newbee.bulid_lib.mybase.activity.BaseCompatActivity;
 import com.newbee.system_sdk_lib.manager.NewBeeSystemSdkManager;
 import com.newbee.system_sdk_lib.util.CmdUtil;
@@ -38,23 +40,27 @@ public class TestActivity extends BaseCompatActivity {
                 return context;
             }
         };
-        newBeeSystemSdkManager.getSdkInterFace().setUiResolution(1920,1080);
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
+//        newBeeSystemSdkManager.getSdkInterFace().setUiResolution(1920,1080);
+////        new Thread(new Runnable() {
+////            @Override
+////            public void run() {
+////
+////            }
+////        }).start();
+////        String str1=CmdUtil.execCommand("wm size 854x480");
+////        newBeeSystemSdkManager.reboot();
+////        Log.i("kankanzhi","kankandaodishiduoshao:1-"+str1);
+//        String str2=CmdUtil.execCommand("wm density 240");
 //
-//            }
-//        }).start();
-//        String str1=CmdUtil.execCommand("wm size 854x480");
+////        String str3=CmdUtil.execCommand("wm size 1708x960");
+////        String str4=CmdUtil.execCommand("wm density 240");
+//        Log.i("kankanzhi","kankandaodishiduoshao:2-"+str2);
+//        handler.sendEmptyMessageDelayed(1,3000);
 //        newBeeSystemSdkManager.reboot();
-//        Log.i("kankanzhi","kankandaodishiduoshao:1-"+str1);
-        String str2=CmdUtil.execCommand("wm density 240");
-
-//        String str3=CmdUtil.execCommand("wm size 1708x960");
-//        String str4=CmdUtil.execCommand("wm density 240");
-        Log.i("kankanzhi","kankandaodishiduoshao:2-"+str2);
-        handler.sendEmptyMessageDelayed(1,3000);
-//        newBeeSystemSdkManager.reboot();
+        newBeeSystemSdkManager.getSdkInterFace().luminanceLoop();
+//        LuminanceNumbShowFloatWindowServiceManager.getInstance().initService(this);
+        LuminanceNumbShowValue.FloatViewShowValue=newBeeSystemSdkManager.getSdkInterFace().getLuminanceNowNumb();
+        LuminanceNumbShowFloatWindowServiceManager.getInstance().startShowView(this);
     }
 
     @Override

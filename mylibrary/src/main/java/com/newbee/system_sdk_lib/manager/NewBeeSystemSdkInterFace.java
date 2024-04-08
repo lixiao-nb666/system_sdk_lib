@@ -35,4 +35,17 @@ public interface NewBeeSystemSdkInterFace {
     public boolean setVolumeByPercentage(int v,boolean showUi);
 
 
+    public boolean luminanceUp();
+
+    public boolean luminanceDown();
+
+    public boolean luminanceLoop();
+
+    public int getLuminanceNowNumb();
+
+    public int getLuminanceMaxNumb();
+
+    public void setLuminance(int v);
+
+
 }
